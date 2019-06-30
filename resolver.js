@@ -1,8 +1,8 @@
 
 const users=[];//empty array
 let user={};//empty object
-const resolvers={
-	hello:()=>'Hello this is the evolution',//adding resolver 
+export const resolvers={
+	Query:{hello:()=>'Hello this is the evolution',//adding resolver 
 	item: () => {
 		return {
 			id:'12324',
@@ -14,17 +14,20 @@ const resolvers={
 			
 		}
 	},
-	getUser:({id})=>{
+	getUser:(_,{id},context,info)=>{
 		return users.find(user=>user.id===id);//search through users array for the given id
 	},
 	users:()=>{
 		return users;
-	},
-	createUser:({input})=>{
+	},},
+	Mutation:{ createUser:(_,{input},context,info)=>{ //only things that is changed from buildschema to typedefs schema is params(obj,args,context,info)
+		//console.log('args',args);//to see the args
 		user=input;//put inputs in user object
 		users.push(user);//push user object to array
 		return user;//return that array
 
-	}
+	}}
+
+	
+	
 };
-export default resolvers;

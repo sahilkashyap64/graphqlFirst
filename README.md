@@ -1,2 +1,2 @@
-# graphqlFirst
-Learning GraphQL with build schema 
+# graphqlSecond
+Learning GraphQL with makeExecutableSchema

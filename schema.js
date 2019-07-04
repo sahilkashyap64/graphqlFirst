@@ -28,10 +28,12 @@ const typeDefs =`
 		items:[HackerNewsItem]
 	}
 	type Query{
+		getitembyid(id:ID!):HackerNewsItem, #get HackerNewsItem by id
 		item:HackerNewsItem,
 		hello:String,
 		getUser(id:ID):User, # to find user by id
 		users:[User]
+		getAllUsers:[User]
 	}
 	input UserInput{
 		id: ID
@@ -39,7 +41,7 @@ const typeDefs =`
 		lastName:String!
 		email:String
 		gender:GENDER
-		items:[HackerNewsItemInput]
+		items:[ID!]
 	}
 
 	input HackerNewsItemInput{
@@ -52,6 +54,9 @@ const typeDefs =`
 	}
 	type Mutation{
 		createUser(input:UserInput):User
+        updateUser(input:UserInput):User
+        deleteUser(id: ID!):User
+		createItem(input:HackerNewsItemInput):HackerNewsItem
 	}
 	`;
 	const schema=makeExecutableSchema({typeDefs,resolvers})
